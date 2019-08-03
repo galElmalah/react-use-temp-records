@@ -1,0 +1,13 @@
+@import '../../../sass/vars.scss';
+
+.widget-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, $card-width);
+  padding: 25px;
+  width: 1000px;
+  height: auto;
+  background: $widget-color;
+  margin: 0 auto;
+  column-gap: $grid-gap;
+  row-gap: $grid-gap;
+}
