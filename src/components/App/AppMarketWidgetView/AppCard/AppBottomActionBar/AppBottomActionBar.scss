@@ -1,8 +1,21 @@
+@import '../../../../../sass/vars.scss';
+@import '../../../../../sass/mixins.scss';
+
+
 .bottom-section-wrapper {
-  margin-top: 11px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @include mobile {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    .ctaButton {
+      margin-bottom: 6px;
+      margin-top: 12px;
+    }
+  }
+
   .installed-icon {
     color:#60bc57;
     margin-right: 3px;
@@ -10,11 +23,11 @@
     width: 20px;
     height: 20px;
   }
-  .installedView {
+  .installed-view {
     display: flex;
     align-items: center
   }
-  .saleText{
+  .sale-text{
     color: #ea5f0e !important;
     font-weight: bolder;
   }

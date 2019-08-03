@@ -3,6 +3,7 @@ import * as style from './AppBottomActionBar.scss';
 import Text from 'wix-style-react/Text';
 import Button from 'wix-style-react/Button';
 import StatusCompleteFilled from 'wix-style-react/new-icons/StatusCompleteFilled';
+import { getLinkToAppInAppMarket } from './appLinks';
 
 interface AppBottomActionBarProps {
   sale?: number | string;
@@ -48,10 +49,25 @@ export const AppBottomActionBar = ({
       </Text>
     );
   };
+
+  const goToAppPage = e => {
+    window.open(getLinkToAppInAppMarket(name), '_blank');
+  };
+  const goToAppInstallationPage = () => alert('boooo');
+
+  const handleCtaClick = (e: MouseEvent) => {
+    e.stopPropagation();
+    isInstalled ? goToAppPage('site booster') : goToAppInstallationPage();
+  };
   return (
     <div className={style.bottomSectionWrapper}>
       {getRightSideView()}
-      <Button dataHook={'cta-button'} size="small">
+      <Button
+        className={style.ctaButton}
+        onClick={handleCtaClick}
+        dataHook={'cta-button'}
+        size="small"
+      >
         <Text light size={'small'} dataHook={'info-text'}>
           {isInstalled ? 'Open' : 'Get'}
         </Text>

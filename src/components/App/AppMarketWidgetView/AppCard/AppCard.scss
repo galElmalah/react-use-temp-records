@@ -1,5 +1,5 @@
 @import '../../../../sass/vars.scss';
-
+@import '../../../../sass/mixins.scss';
 
 .app-card-wrapper {
   display: flex;
@@ -39,4 +39,9 @@
   height: 2px;
   background: $border-color;
   border-radius: 8px;
+  margin-bottom: 11px;
+  margin-top: 15px;
+  @include mobile {
+    display: none;
+  }
 }

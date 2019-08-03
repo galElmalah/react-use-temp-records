@@ -7,11 +7,16 @@
   .app-icon {
     width: 54px;
     height: 54px;
-    background: white;
     border-radius: 14px;
-    border: solid 1px black;
-    padding: 3px;
     box-sizing: border-box;
+  }
+
+  [data-hook="app-badge"] {
+    border-radius: 4px;
+    color: #32536a;
+    border-color: #32536a;
+    background: transparent !important;
+    cursor: pointer;
   }
 }
 

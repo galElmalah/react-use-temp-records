@@ -5,6 +5,7 @@
     <title>${title}</title>
     <link type="image/png" href="https://www.wix.com/favicon.ico" rel="shortcut icon">
     <link rel="stylesheet" href="${clientTopology.staticsBaseUrl}app#if(!${debug}).min#{end}.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Run `npx add-sentry -p app-market-widget -t [TEAM]` to add a valid Sentry link. More information at: https://github.com/wix-private/fed-infra/tree/master/add-sentry -->
 

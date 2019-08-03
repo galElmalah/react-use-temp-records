@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const useListAnimation = (position: number, delay: number) => {
+export const useListItemAnimation = (position: number, delay: number) => {
   const [startAnimation, setStateAnimation] = React.useState(false);
   React.useEffect(() => {
     const timerId = setTimeout(() => {

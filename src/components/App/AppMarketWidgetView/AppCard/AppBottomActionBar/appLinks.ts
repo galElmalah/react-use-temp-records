@@ -6,4 +6,6 @@ export const appNameToUrlCompatibleText = (appName: string) =>
     .join('-');
 
 export const getLinkToAppInAppMarket = (appName: string) =>
-  `www.wix.com/app-market/${appNameToUrlCompatibleText(appName)}/overview`;
+  `https://www.wix.com/app-market/${appNameToUrlCompatibleText(
+    appName,
+  )}/overview`;

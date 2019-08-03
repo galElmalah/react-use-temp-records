@@ -6,18 +6,26 @@ import { ReviewsInfo } from '../ReviewsInfo';
 export const AppDetails = ({
   developedBy,
   description,
-  title,
+  name,
   isInstalled,
 }: any) => {
   const getDeveloperText = () => (
-    <Text size={'tiny'} secondary dataHook={'dev-details'}>
-      By <a href={developedBy.website}>{developedBy.name}</a>
+    <Text
+      onClick={(e: MouseEvent) => e.stopPropagation()}
+      size={'tiny'}
+      secondary
+      dataHook={'dev-details'}
+    >
+      By{' '}
+      <a href={developedBy.website} target="_blank">
+        {developedBy.name}
+      </a>
     </Text>
   );
 
   return (
     <article className={style.appDetails}>
-      <h3>{title}</h3>
+      <h3>{name}</h3>
       {developedBy && getDeveloperText()}
       <Text
         dataHook={'app-description'}
