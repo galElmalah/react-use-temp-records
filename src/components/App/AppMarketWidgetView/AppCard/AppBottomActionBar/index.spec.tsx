@@ -47,4 +47,11 @@ describe('AppBottomActionBar', () => {
     );
     await assertInstalledView(wrapper);
   });
+
+  it('should show the buisness model in a human readable display', () => {
+    const wrapper = mount(
+      <AppBottomActionBar isInstalled={false} info={'FREEMIUM'} />,
+    );
+    expect(textTestKit(wrapper, 'info-text').getText()).toBe('Free / Premium');
+  });
 });

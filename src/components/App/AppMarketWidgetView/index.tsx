@@ -6,22 +6,33 @@ import { AppCard } from './AppCard';
 interface AppMarketWidgetViewProps {
   apps?: App[];
   view?: ViewTypes;
-  skin?: Skin;
+  skin: Skin;
 }
 
-const arr = new Array(10).fill(1);
+const getBusinessModel = appFields =>
+  appFields.packagePickerV2 && appFields.packagePickerV2[0].model.businessModel;
+
+const toAppCard = props => (
+  { appIcon, name, teaser, premiumOnly, appFields, appDefinitionId },
+  i,
+) => (
+  <AppCard
+    appDefinitionId={appDefinitionId}
+    premiumOnly={premiumOnly}
+    appIcon={appIcon}
+    name={name}
+    skin={props.skin}
+    position={i}
+    key={appDefinitionId}
+    teaser={teaser}
+    businessModel={getBusinessModel(appFields) || 'FREE'}
+  />
+);
+
 export const AppMarketWidgetView = (props: AppMarketWidgetViewProps) => {
   return (
     <section className={style.widgetWrapper}>
-      {arr.map((v, i) => (
-        <AppCard
-          name={'site Booster'}
-          skin={props.skin}
-          position={i}
-          key={i}
-          developedBy={{ name: 'someAwesomeCompany', website: 'google.com' }}
-        />
-      ))}
+      {props.apps.map(toAppCard(props))}
     </section>
   );
 };

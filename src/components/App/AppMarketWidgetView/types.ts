@@ -1,17 +1,21 @@
 export type ViewTypes = 'normal' | 'carousel';
 export type Skin = 'transparent' | 'normal';
 
-export interface Developer {
-  name: string;
-  website?: string;
-}
+export type BusinessModel = 'FREEMIUM' | 'PREMIUM' | 'FREE';
+
 export interface App {
-  id: string;
+  appDefinitionId: string;
   metaTag: string;
-  description: string;
+  teaser: string;
   name: string;
   thumbnailUrl: string;
   rating: string;
   numberOfReviews: number;
-  developedBy?: Developer;
+  appIcon: string;
+  premiumOnly: boolean;
+  appFields: {
+    packagePickerV2?: {
+      model: { businessModel: BusinessModel };
+    }[];
+  };
 }

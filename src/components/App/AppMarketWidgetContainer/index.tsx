@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { AppMarketWidgetView } from '../AppMarketWidgetView/index';
-import { ViewTypes, Skin } from '../AppMarketWidgetView/types';
+import { ViewTypes, Skin, App } from '../AppMarketWidgetView/types';
 import { useFetch } from '../../useFetch';
+import { getCollectionUrl } from '../API';
+import Loader from 'wix-style-react/Loader';
+
+const apps = require('../../__mocks__/fakeCollectionData.json');
 
 interface AppMarketWidgetProps {
   collectionName: string;
@@ -15,6 +19,14 @@ export const AppMarketWidgetContainer = ({
   skin,
   ...props
 }: AppMarketWidgetProps) => {
-  const { error, response, isFetching } = useFetch('fakeUrl');
-  return <AppMarketWidgetView {...props} />;
+  const { response, isFetching } = useFetch<App[]>(
+    getCollectionUrl('analytics'),
+    { fakeData: apps },
+  );
+  if (isFetching) {
+    return <Loader size="large" />;
+  }
+  return (
+    <AppMarketWidgetView {...props} apps={response} skin={skin || 'normal'} />
+  );
 };

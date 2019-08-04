@@ -2,6 +2,8 @@
 .reviews-info-wrapper {
   margin-top: 18px;
   display: flex;
+  box-sizing: border-box;
+  min-height: 30px;
   .star-icon {
     color: rgb(255, 217, 0);
     margin-right: 2px;

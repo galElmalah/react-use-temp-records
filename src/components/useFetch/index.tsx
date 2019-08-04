@@ -1,37 +1,49 @@
 import * as React from 'react';
 import axios, { AxiosResponse, AxiosError, Method } from 'axios';
-import { App } from '../App/AppMarketWidgetView/types';
 
-interface FetchStates {
-  response?: AxiosResponse<App> | null;
+interface FetchStates<T> {
+  response?: AxiosResponse<T>;
   error: AxiosError | null;
   isFetching: boolean;
 }
 
-interface UseFetchOptions {
+interface UseFetchOptions<T> {
   method?: Method;
   data?: any;
+  fakeData?: any;
+  transformer?(data: T): any;
 }
 
-export function useFetch(url: string): FetchStates;
-export function useFetch(
+const transformDataIfNeeded = (transformer, data) =>
+  transformer ? transformer(data) : data;
+export function useFetch<T>(
   url: string,
-  options: UseFetchOptions = { method: 'GET' },
-): FetchStates {
+  options: UseFetchOptions<T> = { method: 'GET' },
+): FetchStates<T> | any {
   const [error, setError] = React.useState(null);
   const [isFetching, setIsFetching] = React.useState(true);
-  const [response, setResponse] = React.useState(null);
+  const [response, setResponse] = React.useState({});
   React.useEffect(() => {
-    axios
-      .request({ url, method: options.method, data: options.data })
-      .then(res => {
-        setResponse(res);
+    if (process.env.NODE_ENV !== 'production') {
+      setTimeout(() => {
+        setResponse(
+          transformDataIfNeeded(options.transformer, options.fakeData),
+        );
         setIsFetching(false);
-      })
-      .catch(err => {
-        setError(err);
-        setIsFetching(false);
-      });
+        setError(false);
+      }, Math.random() * 1000 + 1000);
+    } else {
+      axios
+        .request({ url, method: options.method, data: options.data })
+        .then(res => {
+          setResponse(res);
+          setIsFetching(false);
+        })
+        .catch(err => {
+          setError(err);
+          setIsFetching(false);
+        });
+    }
   }, []);
 
   return { isFetching, error, response };

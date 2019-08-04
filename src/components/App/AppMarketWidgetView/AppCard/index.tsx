@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as style from './AppCard.scss';
-import { App, Skin } from '../types';
+import { App, Skin, BusinessModel } from '../types';
 import { AppTopSection } from './AppTopSection';
 import { useListItemAnimation } from '../../../useListItemAnimation';
 import { AppDetails } from './AppDetails/index';
@@ -10,6 +10,8 @@ import { getLinkToAppInAppMarket } from './AppBottomActionBar/appLinks';
 interface AppCardProps extends Partial<App> {
   position: number;
   skin?: Skin;
+  businessModel?: BusinessModel;
+  badge?: string;
 }
 
 // should be synced with the css opacity transition duration
@@ -19,6 +21,12 @@ export const AppCard = ({
   position,
   skin = 'normal',
   name,
+  teaser,
+  appIcon,
+  premiumOnly,
+  businessModel,
+  appDefinitionId,
+  badge,
   ...props
 }: AppCardProps) => {
   const [startAnimation] = useListItemAnimation(position, ANIMATION_BASE_DELAY);
@@ -35,16 +43,16 @@ export const AppCard = ({
         [style.small]: true,
       })}
     >
-      <AppTopSection badge={Math.random() > 0.5 ? 'editor choice' : 'new'} />
+      <AppTopSection appIcon={appIcon} badge={badge} />
       <AppDetails
-        developedBy={props.developedBy}
-        name={'Site Booster'}
-        description={
-          'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis nesciunt ipsam ut expedita nobis. Doloribus, quo? Ipsam earum, laudantium totam possimus officia corrupti provident eaque porro rerum veniam, quo ad.'
-        }
+        appDefinitionId={appDefinitionId}
+        name={name}
+        teaser={teaser}
       />
       <div className={style.separator} />
-      <AppBottomActionBar info={'Premiun site only'} />
+      <AppBottomActionBar
+        info={premiumOnly ? 'Premiun site only' : businessModel}
+      />
     </div>
   );
 };

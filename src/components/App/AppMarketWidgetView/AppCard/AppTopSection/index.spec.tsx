@@ -9,7 +9,7 @@ const badgeTestKit = wrapper =>
 describe('AppTopSection', () => {
   it('display an image', () => {
     const appIconSrc = 'appIconSrc';
-    const wrapper = mount(<AppTopSection appIconSrc={appIconSrc} />);
+    const wrapper = mount(<AppTopSection appIcon={appIconSrc} />);
     expect(wrapper.find('img').exists()).toBeTruthy();
     expect(wrapper.find('img').props().src).toBe(appIconSrc);
     expect(badgeTestKit(wrapper).exists()).toBeFalsy();

@@ -9,10 +9,11 @@
     height: 54px;
     border-radius: 14px;
     box-sizing: border-box;
+    transition: transform 200ms linear;
   }
 
   [data-hook="app-badge"] {
-    border-radius: 4px;
+    border-radius: 3px;
     color: #32536a;
     border-color: #32536a;
     background: transparent !important;

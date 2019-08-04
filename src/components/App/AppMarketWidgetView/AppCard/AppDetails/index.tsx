@@ -4,38 +4,25 @@ import Text from 'wix-style-react/Text';
 import { ReviewsInfo } from '../ReviewsInfo';
 
 export const AppDetails = ({
-  developedBy,
-  description,
+  teaser,
   name,
   isInstalled,
+  appDefinitionId,
 }: any) => {
-  const getDeveloperText = () => (
-    <Text
-      onClick={(e: MouseEvent) => e.stopPropagation()}
-      size={'tiny'}
-      secondary
-      dataHook={'dev-details'}
-    >
-      By{' '}
-      <a href={developedBy.website} target="_blank">
-        {developedBy.name}
-      </a>
-    </Text>
-  );
-
   return (
     <article className={style.appDetails}>
       <h3>{name}</h3>
-      {developedBy && getDeveloperText()}
       <Text
-        dataHook={'app-description'}
+        dataHook={'app-teaser'}
         size={'small'}
         secondary
-        className={style.description}
+        className={style.teaser}
       >
-        {description}
+        {teaser}
       </Text>
-      {!isInstalled && <ReviewsInfo rating={'4.7'} numberOfReviews={261} />}
+      {!isInstalled && <ReviewsInfo appDefinitionId={appDefinitionId} />}
     </article>
   );
 };
+//@ts-ignore
+AppDetails.displayName = 'AppDetails';

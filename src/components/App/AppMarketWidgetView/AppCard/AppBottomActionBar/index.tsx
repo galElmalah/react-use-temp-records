@@ -4,6 +4,7 @@ import Text from 'wix-style-react/Text';
 import Button from 'wix-style-react/Button';
 import StatusCompleteFilled from 'wix-style-react/new-icons/StatusCompleteFilled';
 import { getLinkToAppInAppMarket } from './appLinks';
+import { toHumanReadable } from './textMapper';
 
 interface AppBottomActionBarProps {
   sale?: number | string;
@@ -45,7 +46,7 @@ export const AppBottomActionBar = ({
     }
     return (
       <Text weight={'bold'} size={'small'} dataHook={'info-text'}>
-        {info}
+        {toHumanReadable(info)}
       </Text>
     );
   };
@@ -68,7 +69,7 @@ export const AppBottomActionBar = ({
         dataHook={'cta-button'}
         size="small"
       >
-        <Text light size={'small'} dataHook={'info-text'}>
+        <Text light size={'small'} dataHook={'cta-info-text'}>
           {isInstalled ? 'Open' : 'Get'}
         </Text>
       </Button>
