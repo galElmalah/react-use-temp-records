@@ -6,7 +6,6 @@
     "name": "Gal Elmalah",
     "email": "gale@wix.com"
   },
-  "main": "./dist/statics/app.bundle.js",
   "scripts": {
     "start": "yoshi start --server=dist/server.js",
     "pretest": "yoshi build",
