@@ -43,9 +43,9 @@
     "yoshi": "^4.1.0",
     "yoshi-style-dependencies": "^4.1.0"
   },
-  "dependencies": {
-    "react": "16.8.6",
-    "react-dom": "16.8.6"
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "lint-staged": {
     "linters": {
